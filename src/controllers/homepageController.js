@@ -62,6 +62,7 @@ let postWebhook = (req, res) => {
 
 // Handles messages events
 let handleMessage = async (sender_psid, received_message) => {
+    console.log(sender_psid,received_message);
     //check the incoming message is a quick reply?
     // if (received_message && received_message.quick_reply && received_message.quick_reply.payload) {
     //     let payload = received_message.quick_reply.payload;
@@ -115,6 +116,8 @@ let handleMessage = async (sender_psid, received_message) => {
 // Handles messaging_postbacks events
 let handlePostback = async (sender_psid, received_postback) => {
     // Get the payload for the postback
+    console.log(sender_psid,received_postback);
+
     let payload = received_postback.payload;
 
     // Set the response based on the postback payload
