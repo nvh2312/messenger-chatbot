@@ -4,6 +4,7 @@ import homepageController from "../controllers/homepageController";
 let router = express.Router();
 
 let initWebRoutes = (app)=> {
+    router.get("/", homepageController.getHomePage);
     router.get("/webhook", homepageController.getWebhook);
     router.post("/webhook", homepageController.postWebhook);
 

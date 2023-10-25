@@ -113,6 +113,13 @@ let handleMessage = async (sender_psid, received_message) => {
     await chatbotService.sendMessage(sender_psid, response);
 };
 
+let getHomePage = (req, res) => {
+    let facebookAppId = process.env.FACEBOOK_APP_ID;
+    return res.render("homepage.ejs", {
+        facebookAppId: facebookAppId
+    })
+};
+
 // Handles messaging_postbacks events
 let handlePostback = async (sender_psid, received_postback) => {
     // Get the payload for the postback
@@ -125,6 +132,7 @@ let handlePostback = async (sender_psid, received_postback) => {
 };
 
 module.exports = {
+    getHomePage: getHomePage,
     getWebhook: getWebhook,
     postWebhook: postWebhook,
 };
