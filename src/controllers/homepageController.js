@@ -62,7 +62,6 @@ let postWebhook = (req, res) => {
 
 // Handles messages events
 let handleMessage = async (sender_psid, received_message) => {
-    console.log(sender_psid,received_message);
     //check the incoming message is a quick reply?
     // if (received_message && received_message.quick_reply && received_message.quick_reply.payload) {
     //     let payload = received_message.quick_reply.payload;
@@ -113,11 +112,6 @@ let handleMessage = async (sender_psid, received_message) => {
     await chatbotService.sendMessage(sender_psid, response);
 };
 
-// Sends response messages via the Send API
-function callSendAPI(sender_psid, response) {
-  
-}
-
 let getHomePage = (req, res) => {
     let facebookAppId = process.env.FACEBOOK_APP_ID;
     return res.render("homepage.ejs", {
@@ -128,7 +122,6 @@ let getHomePage = (req, res) => {
 // Handles messaging_postbacks events
 let handlePostback = async (sender_psid, received_postback) => {
     // Get the payload for the postback
-    console.log(sender_psid,received_postback);
 
     let payload = received_postback.payload;
 
