@@ -113,6 +113,11 @@ let handleMessage = async (sender_psid, received_message) => {
     await chatbotService.sendMessage(sender_psid, response);
 };
 
+// Sends response messages via the Send API
+function callSendAPI(sender_psid, response) {
+  
+}
+
 let getHomePage = (req, res) => {
     let facebookAppId = process.env.FACEBOOK_APP_ID;
     return res.render("homepage.ejs", {
