@@ -128,10 +128,22 @@ let handlePostback = async (sender_psid, received_postback) => {
     // Set the response based on the postback payload
     await chatbotService.sendMessageWelcomeNewUser(sender_psid);
 };
-
+let handleSetupProfile = async (req, res) => {
+    try {
+        await homepageService.handleSetupProfileAPI();
+        return res.redirect("/");
+    } catch (e) {
+        console.log(e);
+    }
+};
+let getSetupProfilePage = (req, res) => {
+    return res.render("profile.ejs");
+};
 module.exports = {
     getHomePage: getHomePage,
     getWebhook: getWebhook,
     postWebhook: postWebhook,
+    handleSetupProfile: handleSetupProfile,
+    getSetupProfilePage: getSetupProfilePage,
 };
 
