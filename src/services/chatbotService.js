@@ -21,8 +21,23 @@ let sendMessageWelcomeNewUser = (sender_psid) => {
                 "text": `Hi ${username}! Welcome to HC.VN.`
             };
 
+            let response3= await templateMessage.backToMainMenuTemplate();
+
+
             await sendMessage(sender_psid, response1);
             await sendMessage(sender_psid, response2);
+            await sendMessage(sender_psid, response3);
+            resolve("done");
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+let backToMainMenu = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response= await templateMessage.backToMainMenuTemplate();
+            await sendMessage(sender_psid, response);
             resolve("done");
         } catch (e) {
             reject(e);
@@ -66,8 +81,27 @@ let sendListProduct = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             //send a generic template message
-            let response = templateMessage.sendProductTemplate();
-            await sendMessage(sender_psid, response);
+            let response1 = templateMessage.sendProductTemplate();
+            let response2 = templateMessage.toMainMenu();
+            await sendMessage(sender_psid, response1);
+            await sendMessage(sender_psid, response2);
+            resolve("done");
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+let sendListPayment = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            //send a generic template message
+            let response1 = {
+                "text": `COD || PAYPAL || VNPAY || BALANCE`
+            };
+            let response2 = templateMessage.toMainMenu();
+            await sendMessage(sender_psid, response1);
+            await sendMessage(sender_psid, response2);
             resolve("done");
         } catch (e) {
             reject(e);
@@ -80,4 +114,6 @@ let sendListProduct = (sender_psid) => {
 module.exports = {
     sendMessage: sendMessage,
     sendMessageWelcomeNewUser: sendMessageWelcomeNewUser,
+    sendListProduct: sendListProduct,
+    sendListPayment: sendListPayment,
 };

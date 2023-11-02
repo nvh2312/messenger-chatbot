@@ -66,9 +66,11 @@ let handleMessage = async (sender_psid, received_message) => {
   ) {
     let payload = received_message.quick_reply.payload;
     if (payload === "MAIN_MENU") {
-      await chatbotService.sendMessageWelcomeNewUser(sender_psid);
+      await chatbotService.backToMainMenu(sender_psid);
     } else if (payload === "OUR_PRODUCTS") {
       await chatbotService.sendListProduct(sender_psid);
+    } else if (payload === "PAYMENTS") {
+      await chatbotService.sendListPayment(sender_psid);
     } else if (payload === "HOW_TO_ORDER") {
       await chatbotService.sendGuildline(sender_psid);
     }

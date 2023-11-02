@@ -26,7 +26,7 @@ let sendProductTemplate = () =>{
     };
 };
 
-let sendHeadphonesTemplate = () =>{
+let sendGuildline = () =>{
     return {
         "attachment": {
             "type": "template",
@@ -34,85 +34,29 @@ let sendHeadphonesTemplate = () =>{
                 "template_type": "generic",
                 "elements": [
                     {
-                        "title": "Sony Noise Cancelling Headphones WH1000XM3",
-                        "image_url": "https://bit.ly/imageHeadphone1a",
-                        "subtitle": "$348.00",
-                        "default_action": {
-                            "type": "web_url",
-                            "url": "https://bit.ly/viewHeadphone1",
-                            "webview_height_ratio": "tall",
-                        },
-                        "buttons": [
-                            {
-                                "type": "web_url",
-                                "url": "https://bit.ly/viewHeadphone1",
-                                "title": "Order now"
-                            },
-                            {
-                                "type": "postback",
-                                "title": "Back to categories",
-                                "payload": "BACK_TO_CATEGORIES"
-                            },
-                            {
-                                "type": "postback",
-                                "title": "Main menu",
-                                "payload": "BACK_TO_MAIN_MENU"
-                            }
-                        ]
+                        "title": "Đăng ký / Đăng nhập",
+                        "image_url": "https://res.cloudinary.com/dbekkzxtt/image/upload/v1677837969/Screenshot_from_2023-03-03_16-59-49_orzmfq.png",
+                        "subtitle": "",
                     },
                     {
-                        "title": "Sony WI-1000XM2 Industry Leading Noise Canceling Wireless Behind-Neck",
-                        "image_url": "https://bit.ly/imageHeadphone1b",
-                        "subtitle": "$298.00",
-                        "default_action": {
-                            "type": "web_url",
-                            "url": "https://bit.ly/viewHeadphone2",
-                            "webview_height_ratio": "tall",
-                        },
-                        "buttons": [
-                            {
-                                "type": "web_url",
-                                "url": "https://bit.ly/viewHeadphone2",
-                                "title": "Order now"
-                            },
-                            {
-                                "type": "postback",
-                                "title": "Back to categories",
-                                "payload": "BACK_TO_CATEGORIES"
-                            },
-                            {
-                                "type": "postback",
-                                "title": "Main menu",
-                                "payload": "BACK_TO_MAIN_MENU"
-                            }
-                        ]
+                        "title": "Chọn sản phẩm",
+                        "image_url": "https://res.cloudinary.com/dbekkzxtt/image/upload/v1677837970/Screenshot_from_2023-03-03_17-00-09_btplie.png",
+                        "subtitle": "",
                     },
                     {
-                        "title": "Sony Wireless in-Ear Headset",
-                        "image_url": "https://bit.ly/imageHeadphone1c",
-                        "subtitle": "$38.00",
-                        "default_action": {
-                            "type": "web_url",
-                            "url": "https://bit.ly/viewHeadphone3",
-                            "webview_height_ratio": "tall",
-                        },
-                        "buttons": [
-                            {
-                                "type": "web_url",
-                                "url": "https://bit.ly/viewHeadphone3",
-                                "title": "Order now"
-                            },
-                            {
-                                "type": "postback",
-                                "title": "Back to categories",
-                                "payload": "BACK_TO_CATEGORIES"
-                            },
-                            {
-                                "type": "postback",
-                                "title": "Main menu",
-                                "payload": "BACK_TO_MAIN_MENU"
-                            }
-                        ]
+                        "title": "Thêm địa chỉ, phương thức thanh toán",
+                        "image_url": "https://res.cloudinary.com/dbekkzxtt/image/upload/v1677837967/Screenshot_from_2023-03-03_17-03-25_bptpla.png",
+                        "subtitle": "",
+                    },
+                    {
+                        "title": "Thanh toán",
+                        "image_url": "https://res.cloudinary.com/dbekkzxtt/image/upload/v1677837968/Screenshot_from_2023-03-03_17-02-43_trks35.png",
+                        "subtitle": "",
+                    },
+                    {
+                        "title": "Kiểm tra đơn hàng",
+                        "image_url": "https://res.cloudinary.com/dbekkzxtt/image/upload/v1677837967/Screenshot_from_2023-03-03_17-03-18_zp1yfs.png",
+                        "subtitle": "",
                     },
                 ]
             }
@@ -148,22 +92,22 @@ let sendLookupOrderTemplate = () =>{
 
 let backToMainMenuTemplate = ()=>{
     return {
-        "text": "What can I do to help you today?",
+        "text": "Our Menu?",
         "quick_replies": [
             {
                 "content_type": "text",
-                "title": "Categories",
-                "payload": "CATEGORIES",
+                "title": "Our Product",
+                "payload": "OUR_PRODUCTS",
             },
             {
                 "content_type": "text",
-                "title": "Lookup Order",
-                "payload": "LOOKUP_ORDER",
+                "title": "Payments",
+                "payload": "PAYMENTS",
             },
             {
                 "content_type": "text",
-                "title": "Talk to an agent",
-                "payload": "TALK_AGENT",
+                "title": "How to order",
+                "payload": "HOW_TO_ORDER",
             },
         ]
     };
@@ -189,10 +133,21 @@ let setInfoOrderTemplate = ()=>{
     };
 };
 
+let toMainMenu = () =>{
+    return {
+        "quick_replies": [
+            {
+                "content_type": "text",
+                "title": "Main menu",
+                "payload": "MAIN_MENU",
+            }
+        ]
+    };
+}
+
 module.exports = {
     sendProductTemplate: sendProductTemplate,
-    sendHeadphonesTemplate: sendHeadphonesTemplate,
-    sendLookupOrderTemplate: sendLookupOrderTemplate,
     backToMainMenuTemplate: backToMainMenuTemplate,
-    setInfoOrderTemplate: setInfoOrderTemplate
+    sendGuildline: sendGuildline,
+    toMainMenu: toMainMenu
 };
