@@ -108,6 +108,20 @@ let sendListPayment = (sender_psid) => {
         }
     });
 };
+let sendGuildline = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            //send a generic template message
+            let response1 = templateMessage.sendGuildline();
+            let response2 = templateMessage.toMainMenu();
+            await sendMessage(sender_psid, response1);
+            await sendMessage(sender_psid, response2);
+            resolve("done");
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
 
 
 

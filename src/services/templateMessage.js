@@ -16,9 +16,9 @@ let sendProductTemplate = () =>{
                         "subtitle": "X515EA-BQ1006W (i3-1115G4/RAM 4GB/512GB SSD/ Windows 11)",
                     },
                     {
-                        "title": "Playstation",
-                        "image_url": "https://bit.ly/imagePlaystation",
-                        "subtitle": "Incredible games & Endless entertainment",
+                        "title": "Laptop ASUS Vivobook",
+                        "image_url": "https://res.cloudinary.com/dbekkzxtt/image/upload/v1668577299/ho7uldyd45jl7c8cnxjx.webp",
+                        "subtitle": "X1502ZA-BQ127W (i5-1240P/RAM 8GB/512GB SSD/ Windows 11)",
                     },
                 ]
             }
@@ -64,31 +64,6 @@ let sendGuildline = () =>{
     };
 };
 
-let sendLookupOrderTemplate = () =>{
-    return {
-        "attachment":{
-            "type":"template",
-            "payload":{
-                "template_type":"button",
-                "text":"OK. Let's set info about your order, so I won't need to ask for them in the future.",
-                "buttons":[
-                    {
-                        "type": "web_url",
-                        "url": `${process.env.URL_WEB_VIEW_ORDER}`,
-                        "title": "Set info",
-                        "webview_height_ratio": "tall",
-                        "messenger_extensions": true //false: open the webview in new tab
-                    },
-                    {
-                        "type": "postback",
-                        "title": "Main menu",
-                        "payload": "BACK_TO_MAIN_MENU"
-                    }
-                ]
-            }
-        }
-    };
-};
 
 let backToMainMenuTemplate = ()=>{
     return {
@@ -113,28 +88,9 @@ let backToMainMenuTemplate = ()=>{
     };
 };
 
-let setInfoOrderTemplate = ()=>{
-    return {
-        "attachment":{
-            "type":"template",
-            "payload":{
-                "template_type":"button",
-                "text":"We're checking your order. We will send you a message when the process is complete." +
-                    "\nThank you!",
-                "buttons":[
-                    {
-                        "type": "postback",
-                        "title": "Main menu",
-                        "payload": "BACK_TO_MAIN_MENU"
-                    }
-                ]
-            }
-        }
-    };
-};
-
 let toMainMenu = () =>{
     return {
+        "text": "Back to",
         "quick_replies": [
             {
                 "content_type": "text",
