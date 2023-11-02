@@ -29,14 +29,12 @@ let getWebhook = (req, res) => {
 
 let postWebhook = (req, res) => {
   let body = req.body;
-  console.log(body);
   // Checks this is an event from a page subscription
   if (body.object === "page") {
     // Iterates over each entry - there may be multiple if batched
     body.entry.forEach(function (entry) {
       // Gets the body of the webhook event
       let webhook_event = entry.messaging[0];
-      console.log(webhook_event);
 
       // Get the sender PSID
       let sender_psid = webhook_event.sender.id;
@@ -61,11 +59,21 @@ let postWebhook = (req, res) => {
 // Handles messages events
 let handleMessage = async (sender_psid, received_message) => {
   //check the incoming message is a quick reply?
-  // if (received_message && received_message.quick_reply && received_message.quick_reply.payload) {
-  //     let payload = received_message.quick_reply.payload;
-
-  //     return;
-  // }
+  if (
+    received_message &&
+    received_message.quick_reply &&
+    received_message.quick_reply.payload
+  ) {
+    let payload = received_message.quick_reply.payload;
+    if (payload === "MAIN_MENU") {
+      await chatbotService.sendMessageWelcomeNewUser(sender_psid);
+    } else if (payload === "OUR_PRODUCTS") {
+      await chatbotService.sendListProduct(sender_psid);
+    } else if (payload === "HOW_TO_ORDER") {
+      await chatbotService.sendGuildline(sender_psid);
+    }
+    return;
+  }
 
   let response;
 
@@ -73,7 +81,7 @@ let handleMessage = async (sender_psid, received_message) => {
   if (received_message.text) {
     // Create the payload for a basic text message
     response = {
-      text: `You sent the message: "${received_message.text}". Now send me an image!`,
+      text: `Please wait. We will reply your question soon!!!`,
     };
   } else if (received_message.attachments) {
     // Get the URL of the message attachment
@@ -85,21 +93,9 @@ let handleMessage = async (sender_psid, received_message) => {
           template_type: "generic",
           elements: [
             {
-              title: "Is this the right picture?",
-              subtitle: "Tap a button to answer.",
+              title: "Please provide your question?",
+              subtitle: "",
               image_url: attachment_url,
-              buttons: [
-                {
-                  type: "postback",
-                  title: "Yes!",
-                  payload: "yes",
-                },
-                {
-                  type: "postback",
-                  title: "No!",
-                  payload: "no",
-                },
-              ],
             },
           ],
         },
