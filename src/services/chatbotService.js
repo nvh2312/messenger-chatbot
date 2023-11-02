@@ -130,4 +130,5 @@ module.exports = {
     sendMessageWelcomeNewUser: sendMessageWelcomeNewUser,
     sendListProduct: sendListProduct,
     sendListPayment: sendListPayment,
+    sendGuildline: sendGuildline,
 };
