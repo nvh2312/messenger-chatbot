@@ -131,4 +131,5 @@ module.exports = {
     sendListProduct: sendListProduct,
     sendListPayment: sendListPayment,
     sendGuildline: sendGuildline,
+    backToMainMenu: backToMainMenu
 };
